@@ -46,9 +46,9 @@ export class DashboardComponent implements OnInit {
   
     const res=  await this.crudService.getConfig()
     .toPromise().then(response=>response);
-    // const d=JSON.stringify(res)
+    const d=JSON.stringify(res)
   
-    // console.log(d);
+    console.log(d);
     // this.crudService.getConfig()
     // .subscribe((response)=>{
     //   console.log(JSON.stringify(response));
