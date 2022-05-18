@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscriber } from 'rxjs';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Task } from 'src/app/model/task';
 import { CrudService } from 'src/app/service/crud.service';
-import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,99 +10,71 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DashboardComponent implements OnInit {
 
-
-
-  taskObj : Task = new Task();
   taskArr : Task[] = [];
+  selectedTask !: Task;
 
   addTaskValue : string = "";
   editTaskValue : string = "";
   addDescriptionValue: string = "";
 
-  constructor(private crudService: CrudService) { }
+  taskForms: FormGroup;
 
-  async ngOnInit() {
-    this.taskObj = new Task();
-    this.editTaskValue = "";
-    this.addTaskValue = "";
-    this.addDescriptionValue = "";
-    this.taskArr  = [];
-   await this.getAllTasks();
+
+  constructor(private crudService: CrudService) { 
+    this.taskForms = new FormGroup({
+      description:new FormControl(null,Validators.required),
+      deadline:new FormControl(null,Validators.required),
+      status_id:new FormControl('Select status ',Validators.required)
+    });
+
   }
 
-  
+  ngOnInit() {
+    this.getAllTasks();
+  }
 
+  getAllTasks() {
 
- async showConfig() {
-  await this.crudService.getConfig()
-    // clone the data object, using its known Config shape
-    .toPromise();
-    // subscribe((response)=>{
-    //   alert(JSON.stringify(response));
-    // });
-}
+    this.crudService.getAllTask().subscribe((response:any)=>{
+      console.log(response);
+      this.taskArr = response.data
+    },err=>{
 
-  async getAllTasks() {
-  
-    const res=  await this.crudService.getConfig()
-    .toPromise().then(response=>response);
-    const d=JSON.stringify(res)
-  
-    console.log(d);
-    // this.crudService.getConfig()
-    // .subscribe((response)=>{
-    //   console.log(JSON.stringify(response));
-    // });
-    // console.log(res);
-   
-
-    // this.crudService.getAllTask().subscribe(res => {
-    //   this.taskArr = res;
-    // }, err => {
-    //       alert("Cannot fetch task list");
-    // })
+    });
   }
   
   addTask(){
-    this.taskObj.description = this.addTaskValue;
-    this.crudService.addTask(this.taskObj).subscribe(res =>{
-        this.ngOnInit();
-        this.addTaskValue = "";
+
+    let newTask = new Task();
+    newTask.description = this.addDescriptionValue;
+    this.crudService.addTask(newTask).subscribe(res =>{
+      console.log(res);
     },
     err => {
       alert(err);
     })
   }
 
-  addDescrition(){
-    this.taskObj.description = this.addDescriptionValue;
-    this.crudService.addTask(this.taskObj).subscribe(res =>{
-        this.ngOnInit();
-        this.addDescriptionValue = "";
-    },
-    err => {
-      alert(err);
+
+  editTask() {
+    let newTask = new Task();
+    newTask.description = this.addDescriptionValue;
+    this.crudService.editTask(newTask).subscribe((res:any) => {
+      this.taskArr = res.data
+    }, err => {
+            alert("Failed to update task");
     })
   }
 
-//   editTask() {
-//     this.taskObj.task_name = this.editTaskValue;
-//     this.crudService.editTask(this.taskObj).subscribe(res => {
-//        this.ngOnInit();
-//     }, err => {
-//             alert("Failed to update task");
-//     })
-// }
+  deleteTask(etask : Task){
+    this.crudService.deleteTask(etask).subscribe(res => {
+      this.ngOnInit();
+    }, err => {
+      alert("Failed to delete task");
+    });
+  }
 
-// deleteTask(etask : Task){
-//   this.crudService.deleteTask(etask).subscribe(res => {
-//     this.ngOnInit();
-//   }, err => {
-//     alert("Failed to delete task");
-//   });
-// }
-// call (etask : Task){
-//   this.taskObj = etask;
-//   this.editTaskValue = etask.task_name;
-// }
+  call (etask : Task){
+    this.selectedTask = etask;
+  }
 }
