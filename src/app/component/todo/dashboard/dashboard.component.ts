@@ -12,11 +12,8 @@ export class DashboardComponent implements OnInit {
 
   taskArr : Task[] = [];
   selectedTask !: Task;
-
-  addTaskValue : string = "";
-  editTaskValue : string = "";
   addDescriptionValue: string = "";
-
+  
   taskForms: FormGroup;
 
 
@@ -24,7 +21,7 @@ export class DashboardComponent implements OnInit {
     this.taskForms = new FormGroup({
       description:new FormControl(null,Validators.required),
       deadline:new FormControl(null,Validators.required),
-      status_id:new FormControl('Select status ',Validators.required)
+      status_id:new FormControl(null,Validators.required)
     });
 
   }
@@ -56,25 +53,4 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  editTask() {
-    let newTask = new Task();
-    newTask.description = this.addDescriptionValue;
-    this.crudService.editTask(newTask).subscribe((res:any) => {
-      this.taskArr = res.data
-    }, err => {
-            alert("Failed to update task");
-    })
-  }
-
-  deleteTask(etask : Task){
-    this.crudService.deleteTask(etask).subscribe(res => {
-      this.ngOnInit();
-    }, err => {
-      alert("Failed to delete task");
-    });
-  }
-
-  call (etask : Task){
-    this.selectedTask = etask;
-  }
 }
