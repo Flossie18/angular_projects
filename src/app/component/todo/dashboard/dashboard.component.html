@@ -16,8 +16,7 @@
                       <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1"
                         placeholder="Add new task">
 
-                        <a href="#!" data-mdb-toggle="tooltip" title="Set due date"><i
-                            class="fa fa-calendar fa-lg me-4"></i></a>
+                        <input type="date" class="me-3">
                       <div>
                         <button type="button" class="btn btn-primary" (click)="addTask()">Add</button>
                       </div>
@@ -25,9 +24,17 @@
                   </div>
                 </div>
               </div>
+              <div class="text-left">
+                <button class="btn btn-outline-primary" [ngClass]="{'btn-outline-primary': selectedView != 'tab', 'btn-primary': selectedView == 'tab'}"  (click)="selectedView = 'tab'" style="margin-right:1rem; margin-top: 1em;">Tab View</button>
+                <button class="btn btn-outline-primary" [ngClass]="{'btn-outline-primary': selectedView != 'filter', 'btn-primary': selectedView == 'filter'}" (click)="selectedView = 'filter'" style="margin-top:1rem;">Filter View</button>
+              </div>
+              
+              
               <hr class="my-4">
-              <app-filter-todo-list-items></app-filter-todo-list-items>
-              <app-todo-list-items></app-todo-list-items>
+
+              <app-tab-view *ngIf="selectedView == 'tab'" [tasks]="taskArr"></app-tab-view>
+              <app-filter-view *ngIf="selectedView == 'filter'" [tasks]="taskArr"></app-filter-view>
+
             </div>
           </div>
         </div>

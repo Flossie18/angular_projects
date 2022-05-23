@@ -13,8 +13,10 @@ export class DashboardComponent implements OnInit {
   taskArr : Task[] = [];
   selectedTask !: Task;
   addDescriptionValue: string = "";
-  
   taskForms: FormGroup;
+  selectedView:string = 'tab';
+  totalLength: any;
+  page: number = 1;
 
 
   constructor(private crudService: CrudService) { 
@@ -23,6 +25,7 @@ export class DashboardComponent implements OnInit {
       deadline:new FormControl(null,Validators.required),
       status_id:new FormControl(null,Validators.required)
     });
+
 
   }
 
@@ -35,15 +38,18 @@ export class DashboardComponent implements OnInit {
     this.crudService.getAllTask().subscribe((response:any)=>{
       console.log(response);
       this.taskArr = response.data
+      this.totalLength = response.length
     },err=>{
 
     });
   }
+
+
+ 
   
   addTask(){
 
-    let newTask = new Task();
-    newTask.description = this.addDescriptionValue;
+    let newTask = new Task(this.taskForms.value);
     this.crudService.addTask(newTask).subscribe(res =>{
       console.log(res);
     },

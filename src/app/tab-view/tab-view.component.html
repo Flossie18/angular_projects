@@ -1,0 +1,6 @@
+
+<div style="margin-left: 25rem;"><pagination-controls (pageChange)="page = $event"></pagination-controls></div>
+<ng-container *ngFor="let item of tasks | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalLength}">    
+    <app-task-item [task]="item"></app-task-item>
+</ng-container>
+

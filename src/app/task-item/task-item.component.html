@@ -1,0 +1,56 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col text-success mt-2 h5">
+                <div class="form-check" >
+                  <input class="form-check-input me-0" type="checkbox" value="" id="flexCheckChecked2"
+                    aria-label="..." /> {{ task.description }}
+                </div>
+            </div>
+            <div class="col-auto py-2 px-3 border border-warning rounded-3 bg-light me-5">
+                <a href="#!" data-mdb-toggle="tooltip" title="Due on date">
+                  <i class="fa fa-hourglass-half me-2 text-warning"></i>
+                </a>
+               {{task.deadline | date: 'dd MMM, YYYY'}}
+            </div>
+            <div class="col-auto py-2 px-3 border border-secondary rounded-3 bg-light me-3">
+                <a href="#!" data-mdb-toggle="tooltip" title="Due on date">
+                  <i class="fa fa-pencil me-2 text-secondary"></i>
+                </a>
+               Edit
+            </div>
+            <div class="col-auto py-2 px-3 border border-danger rounded-3 bg-light  me-3">
+                <a href="#!" data-mdb-toggle="tooltip" title="Due on date">
+                  <i class="fa fa-trash me-2 text-danger"></i>
+                </a>
+                Delete
+            </div>
+            <div class="col-auto py-2 px-3 border border-info rounded-3 bg-light me-1">
+              <a href="#!" data-mdb-toggle="tooltip" title="Due on date">
+                <i class="fa fa-solid fa-clone me-2 text-info"></i>
+              </a>
+              Duplicate
+          </div>
+       </div>
+    </div>
+
+      <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Edit Task</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="input-group p-4">
+                      <input type="text" class="form-control" placeholder="Add task" name="task"
+                          [(ngModel)]="editTaskValue">
+                      <button class="btn btn-outline-success" type="button" data-bs-dismiss="modal"
+                          (click)="editTask()">Update</button>
+                  </div>
+              </div>
+            </div>
+            </div> -->
+</div>

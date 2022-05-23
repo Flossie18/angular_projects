@@ -6,15 +6,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './component/todo/dashboard/dashboard.component';
-import { TodoListItemsComponent } from './component/todo/todo-list-items/todo-list-items.component';
-import { FilterTodoListItemsComponent } from './component/todo/filter-todo-list-items/filter-todo-list-items.component';
+import { TabViewComponent } from './tab-view/tab-view.component';
+import { FilterViewComponent } from './filter-view/filter-view.component';
+import { TaskItemComponent } from './task-item/task-item.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    TodoListItemsComponent,
-    FilterTodoListItemsComponent
+    TabViewComponent,
+    FilterViewComponent,
+    TaskItemComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,8 @@ import { FilterTodoListItemsComponent } from './component/todo/filter-todo-list-
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
