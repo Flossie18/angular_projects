@@ -1,27 +1,90 @@
-# AngularCompleteGuide
+Here's the full README:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
 
-## Development server
+# Angular Todo App
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+A todo application built with Angular. Create tasks, manage them, filter
+them by status, and keep track of everything from a single dashboard.
+Clean, fast, and does exactly what a todo app should do.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+What It Does
 
-## Build
+- Create, edit, and delete tasks
+- Filter tasks by status so you only see what's relevant
+- Tab views to switch between different task states
+- Dashboard that gives you an overview of everything at once
+- Due dates and reminders so nothing slips through
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+Tech Stack
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Angular, TypeScript, CSS. Standard Angular project structure,
+no unnecessary dependencies.
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Project Structure
 
-## Further help
+src/
+    app/
+        component/todo/dashboard/    Dashboard view
+        filter-view/                 Filter logic and UI
+        model/                       Task data models
+        service/                     App services
+        tab-view/                    Tab navigation
+        task-item/                   Individual task component
+        app-routing.module.ts        Route definitions
+        app.component.ts             Root component
+        app.module.ts                App module
+    assets/                          Static files
+    environments/                    Environment configs
+    index.html
+    main.ts
+    styles.css
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+Running It
+
+You'll need Node.js and the Angular CLI installed.
+
+    npm install -g @angular/cli
+
+Clone the repo:
+
+    git clone https://github.com/yourusername/angular-todo-app.git
+    cd angular-todo-app
+
+Install dependencies:
+
+    npm install
+
+Start the dev server:
+
+    ng serve
+
+Open http://localhost:4200 in your browser.
+
+
+Running Tests
+
+    ng test
+
+
+Building for Production
+
+    ng build --configuration production
+
+Output goes to the dist/ folder.
+
+
+What's Next
+
+- Drag and drop task reordering
+- Local storage so tasks persist between sessions
+- Dark mode
+
+
+License
+
+MIT. Use it however you want.
+```
